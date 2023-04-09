@@ -8,16 +8,6 @@ Knowledge Challenge Bot, Telegram üzerinden kullanıcılara soru-cevap oyunu oy
 
 #### Users
 
-[TR]
-- id: kullanıcının kimlik bilgisi (string)
-- first_name: kullanıcının adı (string)
-- last_name: kullanıcının soyadı (string)
-- chat_id: kullanıcının Telegram chat ID'si (string)
-- remaining_attempts: kullanıcının kalan deneme hakkı sayısı (integer)
-- score: kullanıcının toplam puanı (integer)
-- answered_questions: kullanıcının cevapladığı soruların ID'leri (list of strings)
-
-[EN]
 - id: the user's identification information (string)
 - first_name: the user's first name (string)
 - last_name: the user's last name (string)
@@ -28,18 +18,6 @@ Knowledge Challenge Bot, Telegram üzerinden kullanıcılara soru-cevap oyunu oy
 
 #### Questions
 
-[TR]
-- id: sorunun kimlik bilgisi (string)
-- text: sorunun metni (string)
-- category: sorunun kategorisi (string)
-- answers: sorunun cevapları  (array)
-- answer_1: cevap 1'in metni (string)
-- answer_2: cevap 2'nin metni (string)
-- answer_3: cevap 3'ün metni (string)
-- answer_4: cevap 4'ün metni (string)
-- correct_answer: Doğru cevap metni (string)
-
-[EN]
 - id: the question's identification information (string)
 - text: the question's text (string)
 - category: the question's category (string)
@@ -49,4 +27,13 @@ Knowledge Challenge Bot, Telegram üzerinden kullanıcılara soru-cevap oyunu oy
 - answer_3: the text of answer 3 (string)
 - answer_4: the text of answer 4 (string)
 - correct_answer: the text of the correct answer (string)
+
+#### Suggestion
+
+- id: suggestion ID (string)
+- user_id: ID of the user who made the suggestion (string)
+- name: name of the user who made the suggestion (string)
+- text: suggestion text (string)
+- category: suggestion category (string)
+- status: suggestion status (string, "new", "approved", "rejected")
 
