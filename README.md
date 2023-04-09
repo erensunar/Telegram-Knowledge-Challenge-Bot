@@ -21,11 +21,7 @@ Knowledge Challenge Bot, Telegram üzerinden kullanıcılara soru-cevap oyunu oy
 - id: the question's identification information (string)
 - text: the question's text (string)
 - category: the question's category (string)
-- answers: a dictionary that contains the answers and which one is correct (boolean)
-- answer_1: the text of answer 1 (string)
-- answer_2: the text of answer 2 (string)
-- answer_3: the text of answer 3 (string)
-- answer_4: the text of answer 4 (string)
+- answers: a list that contains the answers (string)
 - correct_answer: the text of the correct answer (string)
 
 #### Suggestion
