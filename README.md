@@ -34,3 +34,39 @@ Knowledge Challenge Bot, Telegram üzerinden kullanıcılara soru-cevap oyunu oy
 - category: suggestion category (string)
 - status: suggestion status (string, "new", "approved", "rejected")
 
+
+## API Documentation
+
+### Create User
+- **Endpoint:** `/create_user`
+- **Method:** `POST`
+- **Description:** Creates a new user with the provided Telegram user information and adds them to the database.
+- **Request Body:**
+
+```bash
+    {
+    "telegram_id": "1234567890",
+    "first_name": "John",
+    "last_name": "Doe",
+    "chat_id": "-1234567890"
+    }
+```
+
+- `telegram_id` (string, required): The Telegram ID of the user.
+- `first_name` (string, required): The first name of the user.
+- `last_name` (string, required): The last name of the user.
+- `chat_id` (string, required): The chat ID of the user.
+
+- **Response Body:**
+
+```bash
+    {
+    "message": "User created successfully!"
+    }
+```
+
+- **Example:**
+
+```bash
+    curl -X POST -H "Content-Type: application/json" -d '{"telegram_id": "1234567890", "first_name": "John", "last_name": "Doe", "chat_id": "-1234567890"}' http://localhost:5000/create_user
+```
