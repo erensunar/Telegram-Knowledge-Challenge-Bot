@@ -21,7 +21,8 @@ Knowledge Challenge Bot, Telegram üzerinden kullanıcılara soru-cevap oyunu oy
 - id: the question's identification information (string)
 - text: the question's text (string)
 - category: the question's category (string)
-- answers: a list that contains the answers (string)
+- author: the question's author (string)
+- answers: an array that contains the answers (string)
 - correct_answer: the text of the correct answer (string)
 
 #### Suggestion
