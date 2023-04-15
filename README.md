@@ -70,3 +70,35 @@ Knowledge Challenge Bot, Telegram üzerinden kullanıcılara soru-cevap oyunu oy
 ```bash
     curl -X POST -H "Content-Type: application/json" -d '{"telegram_id": "1234567890", "first_name": "John", "last_name": "Doe", "chat_id": "-1234567890"}' http://localhost:5000/create_user
 ```
+
+### Check User
+
+- **Endpoint:** `/check_user/<telegram_id>`
+- **Method:** `GET`
+- **Description:** Checks if the user with the provided Telegram ID exists in the database.
+- **Parameters:**
+
+    - `telegram_id` (string, required): The Telegram ID of the user.
+
+- **Response Body:**
+
+```json
+{
+    "message": "User exists",
+    "exists": true
+}
+```
+or
+
+```json
+{
+    "message": "User does not exist",
+    "exists": false
+    }
+```
+- **Example:**
+
+```bash
+    curl -X GET http://localhost:5000/check_user/1234567890
+
+```
