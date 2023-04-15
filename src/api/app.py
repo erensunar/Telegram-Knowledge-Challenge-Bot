@@ -41,3 +41,18 @@ async def create_user():
     except Exception as e:
         print(e)
         return {'message': 'Error occurred'}
+    
+
+
+@app.route('/check_user/<telegram_id>', methods=['GET'])
+def check_user(telegram_id):
+    try:
+        user_ref = db.collection('users').document(telegram_id).get()
+        if user_ref.exists:
+            return jsonify({'message': 'User exists', 'exists': True})
+        else:
+            return jsonify({'message': 'User does not exist', 'exists': False})
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'Error occurred', 'exists': False})
+
