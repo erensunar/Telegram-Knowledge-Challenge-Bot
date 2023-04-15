@@ -12,21 +12,19 @@ db = get_db()
 
 
 @app.route('/create_user', methods=['POST'])
-def create_user():
+async def create_user():
     try:
         data = json.loads(request.data)
         telegram_id = data['telegram_id']
         first_name = data['first_name']
         last_name = data['last_name']
         chat_id = data['chat_id']
-        
-        # Check if user already exists in the database
+
+
         user_ref = db.collection('users').document(telegram_id)
         if user_ref.get().exists:
             return {'message': 'User already exists!'}
-        
-        # Add new user to the database
-        user_ref.set({
+        await user_ref.set({
             'telegram_id': telegram_id,
             'first_name': first_name,
             'last_name': last_name,
@@ -35,7 +33,6 @@ def create_user():
             'chat_id': chat_id,
             'answered_questions': []
         })
-        
         return {'message': 'User created successfully!'}
     
     except ValueError:
