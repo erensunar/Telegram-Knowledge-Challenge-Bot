@@ -102,3 +102,34 @@ or
     curl -X GET http://localhost:5000/check_user/1234567890
 
 ```
+
+### Leaderboard
+
+- **Endpoint:** `/leaderboard`
+- **Method:** `GET`
+- **Description:** Returns the top 10 users with the highest scores.
+
+- **Response Body:**
+
+```json
+{
+    "leaderboard": [
+        {
+            "name": "John Doe",
+            "score": 1000
+        },
+        {
+            "name": "Jane Doe",
+            "score": 950
+        },
+        ...
+    ]
+}
+
+```
+- **Example:**
+
+```bash
+    curl -X GET http://localhost:5000/leaderboard
+```
+
