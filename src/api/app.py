@@ -1,5 +1,8 @@
 from flask import Flask, request, jsonify
 from database import get_db
+from google.cloud import firestore
+
+
 import json
 app = Flask(__name__)
 
@@ -56,3 +59,17 @@ def check_user(telegram_id):
         print(e)
         return jsonify({'message': 'Error occurred', 'exists': False})
 
+
+@app.route('/leaderboard', methods=['GET'])
+def leaderboard():
+    try:
+        leaderboard = []
+        users_ref = db.collection('users').order_by('score', direction=firestore.Query.DESCENDING).limit(10).stream()
+        for user in users_ref:
+            user_dict = user.to_dict()
+            name = f"{user_dict['first_name']} {user_dict['last_name']}"
+            leaderboard.append({'name': name,  'score': user_dict['score']})
+        return jsonify({'leaderboard': leaderboard})
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'Error occurred while getting leaderboard'})
