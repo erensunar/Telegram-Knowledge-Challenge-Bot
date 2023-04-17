@@ -155,7 +155,7 @@ or
     curl -X PUT http://localhost:5000/score/add/1234567890
 ```
 
-### Score Add
+### Score Subtract
 
 - **Endpoint:** `/score/subtract/<telegram_id>`
 - **Method:** `PUT`
