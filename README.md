@@ -133,3 +133,41 @@ or
     curl -X GET http://localhost:5000/leaderboard
 ```
 
+### Score Add
+
+- **Endpoint:** `/score/add/<telegram_id>`
+- **Method:** `PUT`
+- **Description:** Adds 10 points to the user with the given Telegram ID and returns the updated score.
+
+- **Response Body:**
+
+```json
+{
+    "message": "<telegram_id>'s score has been increased by 10",
+    "success": true,
+    "score": 50
+}
+
+```
+- **Example:**
+
+```bash
+    curl -X PUT http://localhost:5000/score/add/1234567890
+```
+
+### Score Add
+
+- **Endpoint:** `/score/subtract/<telegram_id>`
+- **Method:** `PUT`
+- **Description:** Subtracts 5 points from the user with the given Telegram ID and returns the updated score.
+
+- **Response Body:**
+
+```json
+{
+    "message": "<telegram_id>'s score has been subtracted by 5",
+    "success": true,
+    "score": 35
+}
+
+```

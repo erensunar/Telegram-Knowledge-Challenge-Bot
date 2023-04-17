@@ -73,3 +73,36 @@ def leaderboard():
     except Exception as e:
         print(e)
         return jsonify({'message': 'Error occurred while getting leaderboard'})
+    
+
+
+@app.route('/score/add/<telegram_id>', methods=['PUT'])
+def add_points(telegram_id):
+    try:
+        user_ref = db.collection('users').document(telegram_id)
+        user = user_ref.get()
+        if not user.exists:
+            return jsonify({'message': 'User does not exist', 'success': False}), 404
+        current_score = user.to_dict()['score']
+        new_score = current_score + 10
+        user_ref.update({'score': new_score})
+
+        return jsonify({'message': f'{telegram_id}\'s score has been added by 10', 'score': new_score, 'success': True}), 200
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'Error occurred while adding points'}), 500
+
+@app.route('/score/subtract/<telegram_id>', methods=['PUT'])
+def subtract_points(telegram_id):
+    try:
+        user_ref = db.collection('users').document(telegram_id)
+        user = user_ref.get()
+        if not user.exists:
+            return jsonify({'message': 'User does not exist', 'success': False}), 404
+        current_score = user.to_dict()['score']
+        new_score = current_score - 5
+        user_ref.update({'score': new_score})
+        return jsonify({'message': f'{telegram_id}\'s score has been subtracted by 5', 'score': new_score, 'success': True}), 200
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'Error occurred while subtracting points', 'success': False}), 500
