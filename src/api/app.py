@@ -106,3 +106,36 @@ def subtract_points(telegram_id):
     except Exception as e:
         print(e)
         return jsonify({'message': 'Error occurred while subtracting points', 'success': False}), 500
+
+
+@app.route('/user/update-name/<telegram_id>', methods=['PUT'])
+def update_user_name(telegram_id):
+    try:
+        # Get the user document
+        user_ref = db.collection('users').document(telegram_id)
+        user = user_ref.get()
+
+        # Check if the user exists
+        if not user.exists:
+            return jsonify({'message': 'User does not exist', 'success': False}), 404
+
+        # Get the request data
+        data = request.json
+        first_name = data.get('first_name')
+        last_name = data.get('last_name')
+
+        # Check if first_name and last_name parameters are present
+        if not first_name or not last_name:
+            return jsonify({'message': 'First name and last name are required', 'success': False}), 400
+
+        # Update the user's name
+        user_ref.update({
+            'first_name': first_name,
+            'last_name': last_name
+        })
+
+        return jsonify({'message': f'{telegram_id}\'s name has been updated', 'success': True}), 200
+
+    except Exception as e:
+        print(e)
+        return jsonify({'message': 'Error occurred while updating user name', 'success': False}), 500

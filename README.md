@@ -171,3 +171,26 @@ or
 }
 
 ```
+
+### Update User
+
+- **Endpoint:** `/user/update-name/<telegram_id>`
+- **Method:** `PUT`
+- **Description:** Updates the name of the user with the given Telegram ID.
+
+- **Response Body:**
+
+```json
+{
+    "first_name": "John",
+    "last_name": "Doe"
+}
+
+```
+- **Example:**
+
+```bash
+        curl -X PUT -H "Content-Type: application/json" -d '{"first_name": "John", "last_name": "Doe"}' http://localhost:5000/user/update-name/123456
+
+```
+- Note: The Telegram ID cannot be updated with this endpoint.
