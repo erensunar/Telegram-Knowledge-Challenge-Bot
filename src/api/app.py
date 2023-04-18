@@ -139,3 +139,9 @@ def update_user_name(telegram_id):
     except Exception as e:
         print(e)
         return jsonify({'message': 'Error occurred while updating user name', 'success': False}), 500
+
+@app.route('/questions/all', methods=['GET'])
+def get_all_questions():
+    questions = db.collection('questions').get()
+    all_questions = [q.to_dict() for q in questions]
+    return jsonify(all_questions)

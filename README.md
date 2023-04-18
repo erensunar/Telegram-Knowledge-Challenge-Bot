@@ -194,3 +194,43 @@ or
 
 ```
 - Note: The Telegram ID cannot be updated with this endpoint.
+
+### Get All Questions
+
+- **Endpoint:** `/questions/all`
+- **Method:** `GET`
+- **Description:** Returns all questions in the database.
+
+- **Response Body:**
+
+```json
+{
+    "questions": [
+        {
+            "id": "1",
+            "text": "What is the capital of France?",
+            "category": "Geography",
+            "author": "John",
+            "answers": ["Paris", "Madrid", "Berlin", "Rome"],
+            "correct_answer": "Paris"
+        },
+        {
+            "id": "2",
+            "text": "What is the largest planet in our solar system?",
+            "category": "Astronomy",
+            "author": "Sarah",
+            "answers": ["Mars", "Jupiter", "Venus", "Neptune"],
+            "correct_answer": "Jupiter"
+        },
+        ...
+    ]
+}
+
+
+```
+- **Example:**
+
+```bash
+       curl -X GET http://localhost:5000/questions/all
+
+```
