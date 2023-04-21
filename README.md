@@ -259,3 +259,47 @@ or
 ```bash
     curl -X GET http://localhost:5000/questions/1
 ```
+
+### Add a New Question
+
+- **Endpoint:** `/questions/add`
+- **Method:** `POST`
+- **Description:**  Adds a new question to the database.
+
+- **Request Body:**
+
+```json
+{
+	"text": "What is the smallest planet in our solar system?",
+	"category": "Astronomy",
+	"author": "admin",
+	"answers": ["Mercury", "Venus", "Mars", "Jupiter"],
+	"correct_answer": "Mercury"
+}
+
+```
+
+- **Response Body:**
+
+```json
+{
+	"message": "Question successfully added",
+	"question": {
+		"answers": [
+			"Mercury",
+			"Venus",
+			"Mars",
+			"Jupiter"
+		],
+		"author": "admin",
+		"category": "Astronomy",
+		"correct_answer": "Mercury",
+		"id": "sPFr0rle173U7gVYLz0W",
+		"text": "What is the smallest planet in our solar system?"
+	},
+	"success": true
+}
+
+```
+
+

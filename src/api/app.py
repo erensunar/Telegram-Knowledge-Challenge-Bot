@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, abort
 from database import get_db
 from google.cloud import firestore
 
@@ -155,3 +155,40 @@ def get_question(id):
         return jsonify(question_dict), 200
     else:
         return jsonify({'error': 'Question not found'}), 404
+
+@app.route('/questions/add', methods=['POST'])
+def add_question():
+    if not request.json:
+        abort(400, description="Request body must be JSON")
+    try:
+        text = request.json['text']
+        category = request.json['category']
+        author = request.json['author']
+        answers = request.json['answers']
+        correct_answer = request.json['correct_answer']
+    except KeyError as e:
+        abort(400, description=f"Missing key: {e}")
+
+    # Generate a unique ID for the new question
+    id = str(db.collection('questions').document().id)
+
+    # Create a dictionary to store the new question's data
+    question = {
+        'id': id,
+        'text': text,
+        'category': category,
+        'author': author,
+        'answers': answers,
+        'correct_answer': correct_answer
+    }
+
+    # Add the new question to the "questions" collection in the Firestore database
+    db.collection('questions').document(id).set(question)
+
+    # Return a success message and the new question's data
+    response = {
+        "success": True,
+        "message": "Question successfully added",
+        "question": question
+    }
+    return jsonify(response), 201
