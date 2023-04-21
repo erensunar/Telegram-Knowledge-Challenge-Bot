@@ -238,3 +238,15 @@ def update_question(question_id):
     # return updated question
     updated_question = db_question.get().to_dict()
     return jsonify(updated_question), 200
+
+
+@app.route('/questions/category/<category>', methods=['GET'])
+def get_questions_by_category(category):
+    questions = db.collection('questions').get()
+    all_questions = [q.to_dict() for q in questions]
+    category_questions = [question for question in all_questions if question['category'] == category]
+    if not category_questions:
+        return jsonify({'error': 'No questions found for the given category.'}), 404
+    return jsonify({'questions': category_questions})
+
+

@@ -351,3 +351,26 @@ or
 }
 
 ```
+
+### Get Questions by Category
+
+- **Endpoint:** `/questions/category/{category}`
+- **Method:** `GET`
+- **Description:** Returns a list of questions filtered by category.
+
+- **Response Body:**
+
+```json
+{
+    "questions": [
+        {
+            "author": "string",
+            "correct_answer": "string",
+            "text": "string",
+            "category": "string",
+            "answers": ["string", "string", "string", "string"]
+        }
+    ]
+}
+
+```
