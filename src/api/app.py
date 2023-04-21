@@ -145,3 +145,13 @@ def get_all_questions():
     questions = db.collection('questions').get()
     all_questions = [q.to_dict() for q in questions]
     return jsonify(all_questions)
+
+
+@app.route('/questions/<id>', methods=['GET'])
+def get_question(id):
+    question = db.collection('questions').document(id).get()
+    if question.exists:
+        question_dict = question.to_dict()
+        return jsonify(question_dict), 200
+    else:
+        return jsonify({'error': 'Question not found'}), 404

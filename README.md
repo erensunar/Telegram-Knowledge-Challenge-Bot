@@ -234,3 +234,28 @@ or
        curl -X GET http://localhost:5000/questions/all
 
 ```
+
+### Get a Single Questions
+
+- **Endpoint:** `/questions/id`
+- **Method:** `GET`
+- **Description:**  Returns a single question with the given ID.
+
+- **Response Body:**
+
+```json
+{
+    "id": "1",
+    "text": "What is the capital of France?",
+    "category": "Geography",
+    "author": "Admin",
+    "answers": ["Paris", "Madrid", "Berlin", "Rome"],
+    "correct_answer": "Paris"
+}
+
+```
+- **Example:**
+
+```bash
+    curl -X GET http://localhost:5000/questions/1
+```
