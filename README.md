@@ -303,3 +303,17 @@ or
 ```
 
 
+### Delete Question
+
+- **Endpoint:** `/questions/id`
+- **Method:** `DELETE`
+- **Description:**  Deletes the question with the given id from the database.
+
+- **Response Body:**
+
+```json
+{
+	"deleted": "sPFr0rle173U7gVYLz0W",
+	"success": true
+}
+```

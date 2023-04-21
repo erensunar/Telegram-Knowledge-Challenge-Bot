@@ -192,3 +192,17 @@ def add_question():
         "question": question
     }
     return jsonify(response), 201
+
+
+@app.route('/questions/<question_id>', methods=['DELETE'])
+def delete_question(question_id):
+    # Soruyu veritabanından silme
+    question = db.collection('questions').document(str(question_id))
+    if question.get().exists:
+        question.delete()
+        return jsonify({
+            'success': True,
+            'deleted': question_id
+        })
+    else:
+        abort(404, f'Question with ID {question_id} not found.')
