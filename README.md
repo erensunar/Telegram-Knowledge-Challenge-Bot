@@ -317,3 +317,37 @@ or
 	"success": true
 }
 ```
+
+### Update Question
+
+- **Endpoint:** `/questions/id`
+- **Method:** `PUT`
+- **Description:**  Update a question by its ID.
+
+- **Request Body:**
+
+```json
+{
+    "author": "Updated author",
+    "text": "Updated question text",
+    "category": "Updated category",
+    "correctAnswer": "Updated correct answer",
+    "answers": ["Updated answer 1", "Updated answer 2", "Updated answer 3", "Updated answer 4"]
+}
+
+
+```
+
+- **Response Body:**
+
+```json
+{
+    "id": "question_id",
+    "author": "Updated author",
+    "text": "Updated question text",
+    "category": "Updated category",
+    "correctAnswer": "Updated correct answer",
+    "answers": ["Updated answer 1", "Updated answer 2", "Updated answer 3", "Updated answer 4"]
+}
+
+```

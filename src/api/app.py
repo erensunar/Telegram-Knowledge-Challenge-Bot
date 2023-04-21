@@ -206,3 +206,35 @@ def delete_question(question_id):
         })
     else:
         abort(404, f'Question with ID {question_id} not found.')
+
+
+@app.route('/questions/<question_id>', methods=['PUT'])
+def update_question(question_id):
+    db_question = db.collection('questions').document(question_id)
+
+    # check if question exists
+    if not db_question.get().exists:
+        abort(404, description='Question not found')
+
+    # get request data
+    request_data = request.json
+
+    # update fields if they are in request data
+    if 'author' in request_data:
+        db_question.update({'author': request_data['author']})
+
+    if 'correct_answer' in request_data:
+        db_question.update({'correct_answer': request_data['correct_answer']})
+
+    if 'text' in request_data:
+        db_question.update({'text': request_data['text']})
+
+    if 'category' in request_data:
+        db_question.update({'category': request_data['category']})
+
+    if 'answers' in request_data:
+        db_question.update({'answers': request_data['answers']})
+
+    # return updated question
+    updated_question = db_question.get().to_dict()
+    return jsonify(updated_question), 200
